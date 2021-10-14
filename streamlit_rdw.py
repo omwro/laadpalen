@@ -14,10 +14,6 @@ def main():
                "/n/nWe hebben voor de datasets gekozen waarbij de datums zijn geregistreerd en waarbij de elektrische autos en de verschillende types brandstof staan geregistreerd.")
     str.markdown(### Analyse)
 
-    pd.set_option("max_columns", None) # show all cols
-    pd.set_option('max_colwidth', None) # show full width of showing cols
-    pd.set_option("expand_frame_repr", False) # print cols side by side as it's supposed to be
-
     rdw_url_gv = "https://opendata.rdw.nl/resource/m9d7-ebf2.json"
     req_rdw_gv = req.get(rdw_url_gv)
     pd_rdw_gv = pd.json_normalize(req_rdw_gv.json())
