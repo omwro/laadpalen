@@ -131,12 +131,12 @@ def main():
                          values=[
                              df_ocm['AddressInfo.StateOrProvince'].notna().sum(),
                              df_ocm['AddressInfo.StateOrProvince'].isna().sum()]
-                         ), 1, 1)
+                         ), 1, 2)
     fig1.add_trace(go.Pie(labels=labels,
                          values=[
                              df_ocm['AddressInfo.Town'].notna().sum(),
                              df_ocm['AddressInfo.Town'].isna().sum()]
-                         ), 1, 2)
+                         ), 1, 1)
     fig1.update_traces(hole=.6, hoverinfo="percent+value")
     fig1.update_layout(
         title_text="Ratio tussen complete en incomplete data voor de Cleaning",
@@ -149,12 +149,12 @@ def main():
                          values=[
                              df_ocm['cleaned.province'].notna().sum(),
                              df_ocm['cleaned.province'].isna().sum()]
-                         ), 1, 1)
+                         ), 1, 2)
     fig2.add_trace(go.Pie(labels=labels,
                          values=[
                              df_ocm['cleaned.town'].notna().sum(),
                              df_ocm['cleaned.town'].isna().sum()]
-                         ), 1, 2)
+                         ), 1, 1)
     fig2.update_traces(hole=.6, hoverinfo="percent+value")
     fig2.update_layout(
         title_text="Ratio tussen complete en incomplete data na de Cleaning",
