@@ -3,7 +3,6 @@ import numpy as np
 import pandas as pd
 import requests as req
 from IPython.display import display
-import matplotlib.pyplot as plt
 from datetime import datetime
 import plotly.express as px
 
