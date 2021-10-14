@@ -1,11 +1,13 @@
 import streamlit as st
-import numpy as np
-import pandas as pd
-import requests as req
-from IPython.display import display
-from fuzzywuzzy import fuzz
-import plotly.express as px
-import geopandas as gpd
-
 
 st.title("Laadpalen case")
+st.caption("Klas 3 - Groep 15 - Leden: Nassim, Omer, Max, Emmelotte")
+
+st.markdown("## Open Charge Map")
+st.insert('streamlit_ocm.py')
+
+st.markdown("## Laadpalen")
+st.insert('streamlit_lp.py')
+
+st.markdown("## RDW")
+st.insert('streamlit_rdw.py')
