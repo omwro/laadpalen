@@ -5,6 +5,7 @@ import requests as req
 from fuzzywuzzy import fuzz
 import plotly.express as px
 import geopandas as gpd
+import matplotlib as plt
 
 def main():
     st.set_option('deprecation.showPyplotGlobalUse', False)
@@ -60,7 +61,11 @@ def main():
                 "genormaliseerd naar een dataframe en nog JSON data bevat. Daarom is er gekozen om een **nested "
                 "dataframe** te maken waarbij de kolom 'Connections' een dataframe op zichzelf is")
     st.dataframe(df_ocm['Connections'])
-    df_ocm['Connections'] = df_ocm.apply(lambda row: pd.json_normalize(row['Connections']), axis=1)
+
+    @st.cache
+    def fix_connections():
+        df_ocm['Connections'] = df_ocm.apply(lambda row: pd.json_normalize(row['Connections']), axis=1)
+    fix_connections()
     st.code("df_ocm['Connections'] = df_ocm.apply(lambda row: pd.json_normalize(row['Connections']), axis=1)")
     st.dataframe(df_ocm['Connections'])
 
@@ -85,6 +90,8 @@ def main():
 
     df_ocm['cleaned.town'] = np.nan
     df_ocm['cleaned.province'] = np.nan
+
+    @st.cache
     def get_cleaned_province_and_town(row):
         if row['AddressInfo.Town'] is None: return row
         if row['AddressInfo.Town'] is np.nan: return row
@@ -102,6 +109,7 @@ def main():
             row['cleaned.province'] = highest_score_gp['PROVINCIENAAM']
         return row
 
+    @st.cache
     def get_extra_cleaned_province(row):
         if type(row['AddressInfo.StateOrProvince']) == str and type(row['cleaned.province']) == float:
             highest_score_province = 0
