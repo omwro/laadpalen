@@ -139,9 +139,9 @@ def main():
                          ), 1, 2)
     fig1.update_traces(hole=.6, hoverinfo="percent+value")
     fig1.update_layout(
-        title_text="Ratio tussen complete en incomplete data voor de Cleaning",
-        annotations=[dict(text='Provincie', x=0.15, y=0.5, font_size=16, showarrow=False),
-                     dict(text='Gemeente', x=0.87, y=0.5, font_size=16, showarrow=False)])
+        title_text="Ratio tussen complete en incomplete data <b>voor</b> de Cleaning",
+        annotations=[dict(text='Gemeente', x=0.15, y=0.5, font_size=16, showarrow=False),
+                     dict(text='Provincie', x=0.87, y=0.5, font_size=16, showarrow=False)])
     st.plotly_chart(fig1)
 
     fig2 = make_subplots(rows=1, cols=2, specs=[[{'type': 'domain'}, {'type': 'domain'}]])
@@ -157,9 +157,9 @@ def main():
                          ), 1, 2)
     fig2.update_traces(hole=.6, hoverinfo="percent+value")
     fig2.update_layout(
-        title_text="Ratio tussen complete en incomplete data na de Cleaning",
-        annotations=[dict(text='Provincie', x=0.15, y=0.5, font_size=16, showarrow=False),
-                     dict(text='Gemeente', x=0.87, y=0.5, font_size=16, showarrow=False)])
+        title_text="Ratio tussen complete en incomplete data <b>na</b> de Cleaning",
+        annotations=[dict(text='Gemeente', x=0.15, y=0.5, font_size=16, showarrow=False),
+                     dict(text='Provincie', x=0.87, y=0.5, font_size=16, showarrow=False)])
     st.plotly_chart(fig2)
 
 
