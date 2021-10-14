@@ -1,4 +1,53 @@
 import streamlit as st
 
 def main():
-    st.markdown("Dit is RDW Data")
+    st.markdown("Dit is RDW Data", "voor het ophalen van de RDW data hebben gebruik gemaakt van verschillende datasets,
+                "https://opendata.rdw.nl/resource/m9d7-ebf2.json", "https://opendata.rdw.nl/resource/8ys7-d773.json", "https://opendata.rdw.nl/resource/w4rt-e856.json".
+               "De RDW datasets bevatten geregistreerde auto's in Nederland, De RDW heeft veel verschillende datasets met betrekking tot de autos in Nederland".
+               "We hebben voor de datasets gekozen waarbij de datum's zijn geregistreerd en waarbij de elektrische auto's en de verschillende types brandstof staan geregistreerd.")
+    str.markdown(### Analyse)
+        import numpy as np
+import pandas as pd
+import requests as req
+from IPython.display import display
+import matplotlib.pyplot as plt
+from datetime import datetime
+import plotly.express as px
+
+pd.set_option("max_columns", None) # show all cols
+pd.set_option('max_colwidth', None) # show full width of showing cols
+pd.set_option("expand_frame_repr", False) # print cols side by side as it's supposed to be
+
+rdw_url_gv = "https://opendata.rdw.nl/resource/m9d7-ebf2.json"
+req_rdw_gv = req.get(rdw_url_gv)
+pd_rdw_gv = pd.json_normalize(req_rdw_gv.json())
+display(pd_rdw_gv)
+        
+rdw_url_gvb = "https://opendata.rdw.nl/resource/8ys7-d773.json"
+req_rdw_gvb = req.get(rdw_url_gvb)
+pd_rdw_gvb = pd.json_normalize(req_rdw_gvb.json())
+display(pd_rdw_gvb)
+        
+rdw_url_ev = "https://opendata.rdw.nl/resource/w4rt-e856.json"
+req_rdw_ev = req.get(rdw_url_ev)
+pd_rdw_ev = pd.json_normalize(req_rdw_ev.json())
+display(pd_rdw_ev)
+        
+        
+str.markdown(### Cleaning Data)
+str.markdown("Wat opviel was dat er per ingeladen dataset zo'n 1000 rijen waren met 15+ kolommen. Veel cellen waren leeg,"
+             "deze cellen hebben we ook gewijzigd in Nan waardes." "Ook hebben we de volledige tabbellen zichtbaar gemaakt om te checken of er nog waardes stonden die niet klopten"
+             "Dit hebben wij gedaan door een door de set option functie toe te passen op max_rows en max_columns en de grens op None te zetten."
+             "D.M.V. het gebruiken van de isna.any.sum functie hebben we gecheckt of er nog eventuele null waardes in de dataset zaten."
+             "Ook hebben we de datums aangepast in een juiste Time Format, d.m.v. het gebruiken van een nieuwe column met de juiste vorm datum d.m.v. strf.time functie"
+             "Zo hebben we de datums gezet in Year-Month. dit was makkelijker aangezien we de lijn diagram per jaar per maand moesten maken.")
+             
+ str.markdown(### Plots)
+     fig = px.line(sorted_pd_rdw_gv)
+
+fig.update_traces(line_color='darkpink')
+fig.update_layout(title_text='Lijndiagram van het aantal voertuigen per maand')
+fig.update_xaxes(title_text='Datums')
+fig.update_yaxes(title_text='Aantal voertuigen')
+
+fig.show()
