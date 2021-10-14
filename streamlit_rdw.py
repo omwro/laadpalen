@@ -49,9 +49,7 @@ def main():
     fig.update_traces(line_color='lawngreen', showlegend=False)
     fig.update_layout(title_text='Lijndiagram van het aantal voertuigen per maand')
     fig.update_xaxes(title_text='Datums')
-    fig.update_yaxes(title_text='Aantal voertuigen')
-
-    st.plotly_chart(fig)   
+    fig.update_yaxes(title_text='Aantal voertuigen') 
 
     st.plotly_chart(fig)
 
