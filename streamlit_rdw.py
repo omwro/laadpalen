@@ -17,17 +17,17 @@ def main():
         rdw_url_gv = "https://opendata.rdw.nl/resource/m9d7-ebf2.json"
         req_rdw_gv = req.get(rdw_url_gv)
         pd_rdw_gv = pd.json_normalize(req_rdw_gv.json())
-        st.write(print(pd_rdw_gv))
+        display(pd_rdw_gv)
         
         rdw_url_gvb = "https://opendata.rdw.nl/resource/8ys7-d773.json"
         req_rdw_gvb = req.get(rdw_url_gvb)
         pd_rdw_gvb = pd.json_normalize(req_rdw_gvb.json())
-        st.write(print(pd_rdw_gv))
+        display(pd_rdw_gv)
         
         rdw_url_ev = "https://opendata.rdw.nl/resource/w4rt-e856.json"
         req_rdw_ev = req.get(rdw_url_ev)
         pd_rdw_ev = pd.json_normalize(req_rdw_ev.json())
-        st.write(print(pd_rdw_gv))
+        display(pd_rdw_gv)
         
         
     st.markdown('### Cleaning Data')
