@@ -44,6 +44,11 @@ str.markdown("Wat opviel was dat er per ingeladen dataset zo'n 1000 rijen waren 
              
  str.markdown(### Plots)
 
+pd_rdw_gv['cleaned.datum_tenaamstelling'] = None
+pd_rdw_gv['cleaned.datum_tenaamstelling'] = pd_rdw_gv.apply(lambda row: datetime.strptime(row["datum_tenaamstelling"], '%Y%m%d').strftime("%Y/%m"), axis=1)
+     
+sorted_pd_rdw_gv = pd_rdw_gv['cleaned.datum_tenaamstelling'].value_counts().sort_index()     
+     
 fig = px.line(sorted_pd_rdw_gv)
 fig.update_traces(line_color='darkpink')
 fig.update_layout(title_text='Lijndiagram van het aantal voertuigen per maand')
@@ -51,6 +56,9 @@ fig.update_xaxes(title_text='Datums')
 fig.update_yaxes(title_text='Aantal voertuigen')
 
 st.plotly_chart(fig)
+
+merk_gv = pd_rdw_gv['merk'].value_counts()     
+merk_gv = merk_gv[merk_gv.values>10]    
      
 fig = px.histogram(merk_gv, x=merk_gv.index, y=merk_gv.values, color=merk_gv.index)
 
