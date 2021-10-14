@@ -6,6 +6,8 @@ from fuzzywuzzy import fuzz
 import plotly.express as px
 import geopandas as gpd
 import matplotlib as plt
+from plotly.subplots import make_subplots
+import plotly.graph_objects as go
 
 def main():
     st.set_option('deprecation.showPyplotGlobalUse', False)
@@ -40,11 +42,6 @@ def main():
                 "**7487** waarden ontbreekt. "
                 "\n\nVan de **7785** regels de Gemeente kolom, zijn maar **7766** waarden ingevuld en de overige "
                 "**17** waarden ontbreekt.")
-    st.text("De Data Tabel heeft "+ str(df_ocm.shape[0]) +" regels")
-    st.text("De Provincie kolom heeft "+ str(df_ocm['AddressInfo.StateOrProvince'].notna().sum()) +" ingevulde waardes.")
-    st.text("De Provincie kolom heeft "+ str(df_ocm['AddressInfo.StateOrProvince'].isna().sum()) +" ontbrekende waardes.")
-    st.text("De Gemeente kolom heeft "+ str(df_ocm['AddressInfo.Town'].notna().sum()) +" ingevulde waardes.")
-    st.text("De Gemeente kolom heeft "+ str(df_ocm['AddressInfo.Town'].isna().sum()) +" ontbrekende waardes.")
 
     st.markdown("#### Geoportaaloverijssel")
     st.dataframe(df_gp)
@@ -127,9 +124,44 @@ def main():
                 "waarden."
                 "\n\nTot slot hebben we de Provincie kolom extra gecontroleerd op mogelijke vermiste waarden en "
                 "hiermee hebben we maar **444** vermiste waarden in Provincie.")
-    st.text("Aantal ontbrekende gemeente data na de corrigering: "+str(df_ocm['cleaned.town'].isna().sum()))
-    st.text("Aantal ontbrekende provincie data na de corrigering: "+str(df_ocm['cleaned.province'].isna().sum()))
-    st.dataframe(df_ocm[['AddressInfo.Town', 'cleaned.town', 'AddressInfo.StateOrProvince', 'cleaned.province']])
+
+    labels = ['Ingevuld', 'Niet ingevuld']
+    fig1 = make_subplots(rows=1, cols=2, specs=[[{'type': 'domain'}, {'type': 'domain'}]])
+    fig1.add_trace(go.Pie(labels=labels,
+                         values=[
+                             df_ocm['AddressInfo.StateOrProvince'].notna().sum(),
+                             df_ocm['AddressInfo.StateOrProvince'].isna().sum()]
+                         ), 1, 1)
+    fig1.add_trace(go.Pie(labels=labels,
+                         values=[
+                             df_ocm['AddressInfo.Town'].notna().sum(),
+                             df_ocm['AddressInfo.Town'].isna().sum()]
+                         ), 1, 2)
+    fig1.update_traces(hole=.6, hoverinfo="percent+value")
+    fig1.update_layout(
+        title_text="Ratio tussen complete en incomplete data voor de Cleaning",
+        annotations=[dict(text='Provincie', x=0.15, y=0.5, font_size=16, showarrow=False),
+                     dict(text='Gemeente', x=0.87, y=0.5, font_size=16, showarrow=False)])
+    st.plotly_chart(fig1)
+
+    fig2 = make_subplots(rows=1, cols=2, specs=[[{'type': 'domain'}, {'type': 'domain'}]])
+    fig2.add_trace(go.Pie(labels=labels,
+                         values=[
+                             df_ocm['cleaned.province'].notna().sum(),
+                             df_ocm['cleaned.province'].isna().sum()]
+                         ), 1, 1)
+    fig2.add_trace(go.Pie(labels=labels,
+                         values=[
+                             df_ocm['cleaned.town'].notna().sum(),
+                             df_ocm['cleaned.town'].isna().sum()]
+                         ), 1, 2)
+    fig2.update_traces(hole=.6, hoverinfo="percent+value")
+    fig2.update_layout(
+        title_text="Ratio tussen complete en incomplete data na de Cleaning",
+        annotations=[dict(text='Provincie', x=0.15, y=0.5, font_size=16, showarrow=False),
+                     dict(text='Gemeente', x=0.87, y=0.5, font_size=16, showarrow=False)])
+    st.plotly_chart(fig2)
+
 
     st.markdown("### Type laadpalen")
     types = []
