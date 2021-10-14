@@ -1,3 +1,4 @@
 import streamlit as st
 
-st.markdown("Dit is Laadpalen")
+def main():
+    st.markdown("Dit is Laadpalen")

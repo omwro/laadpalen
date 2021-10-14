@@ -7,4 +7,5 @@ from fuzzywuzzy import fuzz
 import plotly.express as px
 import geopandas as gpd
 
-st.markdown("Dit is Open Charge Map")
+def main():
+    st.markdown("Dit is Open Charge Map")

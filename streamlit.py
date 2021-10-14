@@ -1,13 +1,16 @@
 import streamlit as st
+import streamlit_lp as lp
+import streamlit_ocm as ocm
+import streamlit_rdw as rdw
 
 st.title("Laadpalen case")
 st.caption("Klas 3 - Groep 15 - Leden: Nassim, Omer, Max, Emmelotte")
 
 st.markdown("## Open Charge Map")
-st.insert('streamlit_ocm.py')
+ocm.main()
 
 st.markdown("## Laadpalen")
-st.insert('streamlit_lp.py')
+lp.main()
 
 st.markdown("## RDW")
-st.insert('streamlit_rdw.py')
+rdw.main()
