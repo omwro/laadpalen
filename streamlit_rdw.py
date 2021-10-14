@@ -1,4 +1,11 @@
 import streamlit as st
+import numpy as np
+import pandas as pd
+import requests as req
+from IPython.display import display
+import matplotlib.pyplot as plt
+from datetime import datetime
+import plotly.express as px
 
 def main():
     st.markdown("Dit is RDW Data voor het ophalen van de RDW data hebben gebruik gemaakt van verschillende datasets"
@@ -6,13 +13,6 @@ def main():
                "/n/nDe RDW datasets bevatten geregistreerde autos in Nederland, de RDW heeft veel verschillende datasets met betrekking tot de autos in Nederland"
                "/n/nWe hebben voor de datasets gekozen waarbij de datums zijn geregistreerd en waarbij de elektrische autos en de verschillende types brandstof staan geregistreerd.")
     str.markdown(### Analyse)
-        import numpy as np
-import pandas as pd
-import requests as req
-from IPython.display import display
-import matplotlib.pyplot as plt
-from datetime import datetime
-import plotly.express as px
 
 pd.set_option("max_columns", None) # show all cols
 pd.set_option('max_colwidth', None) # show full width of showing cols
@@ -44,10 +44,17 @@ str.markdown("Wat opviel was dat er per ingeladen dataset zo'n 1000 rijen waren 
              
  str.markdown(### Plots)
 
-     fig = px.line(sorted_pd_rdw_gv)
+fig = px.line(sorted_pd_rdw_gv)
 fig.update_traces(line_color='darkpink')
 fig.update_layout(title_text='Lijndiagram van het aantal voertuigen per maand')
 fig.update_xaxes(title_text='Datums')
 fig.update_yaxes(title_text='Aantal voertuigen')
 
 st.plotly_chart(fig)
+     
+fig = px.histogram(merk_gv, x=merk_gv.index, y=merk_gv.values, color=merk_gv.index)
+
+fig.update_layout(height=500, width=1000, showlegend=False, xaxis_title='Merk', yaxis_title='Aantal voertuigen', 
+                  title_text='Histogram aantal voertuigen per merk')
+
+st.plotly_chart(fig)     
