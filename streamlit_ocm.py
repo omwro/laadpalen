@@ -21,7 +21,6 @@ def main():
     req_ocm = req.get(ocm_url)
 
     st.markdown("### Analyse")
-
     df_ocm_raw = pd.json_normalize(req_ocm.json())
     st.dataframe(df_ocm_raw.head())
 
@@ -34,7 +33,7 @@ def main():
     st.dataframe(df_ocm['Connections'].head())
     df_ocm['Connections'] = df_ocm.apply(lambda row: pd.json_normalize(row['Connections']), axis=1)
     st.markdown("\n```\ndf_ocm['Connections'] = df_ocm.apply(lambda row: pd.json_normalize(row['Connections']), axis=1)")
-    st.dataframe(df_ocm['Connections'].head())
+    # st.dataframe(df_ocm['Connections'].head())
 
     st.markdown("### Plots")
 
