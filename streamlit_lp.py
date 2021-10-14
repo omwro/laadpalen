@@ -15,7 +15,7 @@ def main():
     st.header("###Importeren en opschonen van data")
     paalData = pd.read_csv('laadpaaldata.csv')
     paalData.head()
-    st.code("paalData = pd.read_csv('laadpaaldata.csv')
+    st.code("paalData = pd.read_csv('laadpaaldata.csv')"
     "\npaalData.head()")
     fig = px.scatter(x=paalData['ChargeTime'],y=paalData['ConnectedTime'])
     st.plotly_chart(fig)
