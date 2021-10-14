@@ -8,9 +8,9 @@ import plotly.express as px
 
 def main():
     st.markdown("Dit is RDW Data voor het ophalen van de RDW data hebben gebruik gemaakt van verschillende datasets"
-                "/n/nhttps://opendata.rdw.nl/resource/m9d7-ebf2.json" "https://opendata.rdw.nl/resource/8ys7-d773.json" "https://opendata.rdw.nl/resource/w4rt-e856.json"
-               "/n/nDe RDW datasets bevatten geregistreerde autos in Nederland, de RDW heeft veel verschillende datasets met betrekking tot de autos in Nederland"
-               "/n/nWe hebben voor de datasets gekozen waarbij de datums zijn geregistreerd en waarbij de elektrische autos en de verschillende types brandstof staan geregistreerd.")
+                "\nhttps://opendata.rdw.nl/resource/m9d7-ebf2.json" "https://opendata.rdw.nl/resource/8ys7-d773.json" "https://opendata.rdw.nl/resource/w4rt-e856.json"
+               "\nDe RDW datasets bevatten geregistreerde autos in Nederland, de RDW heeft veel verschillende datasets met betrekking tot de autos in Nederland"
+               "\nWe hebben voor de datasets gekozen waarbij de datums zijn geregistreerd en waarbij de elektrische autos en de verschillende types brandstof staan geregistreerd.")
     st.markdown('### Analyse')
 
     rdw_url_gv = "https://opendata.rdw.nl/resource/m9d7-ebf2.json"
@@ -31,11 +31,11 @@ def main():
         
     st.markdown('### Cleaning Data')
     st.markdown("Wat opviel was dat er per ingeladen dataset zo'n 1000 rijen waren met 15+ kolommen. Veel cellen waren leeg,"
-             "/n/ndeze cellen hebben we ook gewijzigd in Nan waardes." "Ook hebben we de volledige tabbellen zichtbaar gemaakt om te checken of er nog waardes stonden die niet klopten"
-             "/n/nDit hebben wij gedaan door een door de set option functie toe te passen op max_rows en max_columns en de grens op None te zetten."
-             "/n/nD.M.V. het gebruiken van de isna.any.sum functie hebben we gecheckt of er nog eventuele null waardes in de dataset zaten."
-             "/n/nOok hebben we de datums aangepast in een juiste Time Format, d.m.v. het gebruiken van een nieuwe column met de juiste vorm datum d.m.v. strf.time functie"
-             "/n/nZo hebben we de datums gezet in Year-Month. dit was makkelijker aangezien we de lijn diagram per jaar per maand moesten maken.")
+             "\ndeze cellen hebben we ook gewijzigd in Nan waardes." "Ook hebben we de volledige tabbellen zichtbaar gemaakt om te checken of er nog waardes stonden die niet klopten"
+             "\nDit hebben wij gedaan door een door de set option functie toe te passen op max_rows en max_columns en de grens op None te zetten."
+             "\nD.M.V. het gebruiken van de isna.any.sum functie hebben we gecheckt of er nog eventuele null waardes in de dataset zaten."
+             "\nOok hebben we de datums aangepast in een juiste Time Format, d.m.v. het gebruiken van een nieuwe column met de juiste vorm datum d.m.v. strf.time functie"
+             "\nZo hebben we de datums gezet in Year-Month. dit was makkelijker aangezien we de lijn diagram per jaar per maand moesten maken.")
              
     st.markdown('### Plots')
 
