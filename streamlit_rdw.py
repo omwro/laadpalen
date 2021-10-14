@@ -11,7 +11,7 @@ def main():
                 "/n/nhttps://opendata.rdw.nl/resource/m9d7-ebf2.json" "https://opendata.rdw.nl/resource/8ys7-d773.json" "https://opendata.rdw.nl/resource/w4rt-e856.json"
                "/n/nDe RDW datasets bevatten geregistreerde autos in Nederland, de RDW heeft veel verschillende datasets met betrekking tot de autos in Nederland"
                "/n/nWe hebben voor de datasets gekozen waarbij de datums zijn geregistreerd en waarbij de elektrische autos en de verschillende types brandstof staan geregistreerd.")
-    str.markdown('### Analyse')
+    st.markdown('### Analyse')
 
     rdw_url_gv = "https://opendata.rdw.nl/resource/m9d7-ebf2.json"
     req_rdw_gv = req.get(rdw_url_gv)
@@ -29,15 +29,15 @@ def main():
     display(pd_rdw_ev)
         
         
-    str.markdown('### Cleaning Data')
-    str.markdown("Wat opviel was dat er per ingeladen dataset zo'n 1000 rijen waren met 15+ kolommen. Veel cellen waren leeg,"
+    st.markdown('### Cleaning Data')
+    st.markdown("Wat opviel was dat er per ingeladen dataset zo'n 1000 rijen waren met 15+ kolommen. Veel cellen waren leeg,"
              "/n/ndeze cellen hebben we ook gewijzigd in Nan waardes." "Ook hebben we de volledige tabbellen zichtbaar gemaakt om te checken of er nog waardes stonden die niet klopten"
              "/n/nDit hebben wij gedaan door een door de set option functie toe te passen op max_rows en max_columns en de grens op None te zetten."
              "/n/nD.M.V. het gebruiken van de isna.any.sum functie hebben we gecheckt of er nog eventuele null waardes in de dataset zaten."
              "/n/nOok hebben we de datums aangepast in een juiste Time Format, d.m.v. het gebruiken van een nieuwe column met de juiste vorm datum d.m.v. strf.time functie"
              "/n/nZo hebben we de datums gezet in Year-Month. dit was makkelijker aangezien we de lijn diagram per jaar per maand moesten maken.")
              
-    str.markdown('### Plots')
+    st.markdown('### Plots')
 
     pd_rdw_gv['cleaned.datum_tenaamstelling'] = None
     pd_rdw_gv['cleaned.datum_tenaamstelling'] = pd_rdw_gv.apply(lambda row: datetime.strptime(row["datum_tenaamstelling"], '%Y%m%d').strftime("%Y/%m"), axis=1)
