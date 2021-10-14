@@ -7,7 +7,7 @@ st.title("Laadpalen case")
 st.caption("Klas 3 - Groep 15 - Leden: Nassim, Omer, Max, Emmelotte")
 
 st.markdown("## Open Charge Map")
-# ocm.main()
+ocm.main()
 
 st.markdown("## Laadpalen")
 lp.main()

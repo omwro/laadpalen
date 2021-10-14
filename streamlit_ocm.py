@@ -17,7 +17,7 @@ def main():
                 "uit te voeren.")
     # https://openchargemap.org/site/develop/api
     api_key = "bef339a4-319a-4a46-bbbe-a5f13db5bd24"
-    ocm_url = f"https://api.openchargemap.io/v3/poi/?output=json&key=${api_key}&countrycode=NL&maxresults=100000"
+    ocm_url = f"https://api.openchargemap.io/v3/poi/?output=json&key=${api_key}&countrycode=NL&maxresults=1000"
     req_ocm = req.get(ocm_url)
 
     st.markdown("Daarnaast hebben we ook een extra dataset gebruikt om alle correcte benamingen van provincies en "
