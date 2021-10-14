@@ -17,8 +17,7 @@ def main():
     paalData.head()
     st.code("paalData = pd.read_csv('laadpaaldata.csv')
     "\npaalData.head()")
-    plt.figure()
-    sns.scatterplot(x='ChargeTime', y='ConnectedTime', data=paalData)
+    fig = px.scatter(x=paalData['ChargeTime'],y=paalData['ConnectedTime'])
     st.plotly_chart(fig)
 
 
