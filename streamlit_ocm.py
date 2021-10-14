@@ -15,7 +15,8 @@ def main():
                 "API. De API kan je terug vinden op [OpenChargeMap](https://openchargemap.org/site/develop/api). "
                 "Tijdens het ophalen hebben we opgemerkt dat we niet alle data terugkregen, dus hiervoor hebben "
                 "gekozen om de maximum resultaat limiet op 100.000 te zetten om het analyse zo goed mogelijk "
-                "uit te voeren.")
+                "uit te voeren. Maar dit kon helaas Streamlit niet aan waardoor we het limiet moesten verlagen naar "
+                "1.000 regels. De tekstuele analyses zijn nog van de analyse met de limiet van 100.000 regels.")
     # https://openchargemap.org/site/develop/api
     api_key = "bef339a4-319a-4a46-bbbe-a5f13db5bd24"
     ocm_url = f"https://api.openchargemap.io/v3/poi/?output=json&key=${api_key}&countrycode=NL&maxresults=1000"
@@ -86,7 +87,7 @@ def main():
 
     df_ocm['cleaned.town'] = np.nan
     df_ocm['cleaned.province'] = np.nan
-    
+
     def get_cleaned_province_and_town(row):
         if row['AddressInfo.Town'] is None: return row
         if row['AddressInfo.Town'] is np.nan: return row
@@ -144,7 +145,11 @@ def main():
     df_types = pd.DataFrame()
     df_types['type'] = unique
     df_types['count'] = counts
-    st.dataframe(df_types)
+    fig = px.pie(df_types,
+                 values='count',
+                 names='type',
+                 title="Type laadpalen in nederland")
+    st.plotly_chart(fig)
 
     st.markdown("### Tarieven")
     st.markdown("Zijn tarieven transparant?"
