@@ -101,8 +101,20 @@ def main():
     fig.update_layout({'sliders': sliders})
 
     st.plotly_chart(fig)
+    st.caption("Zoals te zien is is de gemiddelde laadtijd 2.3 uur, en is de mediaan 2.2 uur. Ook is te zien dat de laadtijden niet veranderen per seizoen.")
+    st.caption("")
+    st.caption("De volgende plot geeft de kansdichtheidsfunctie weer van de laadtijden in 2018. Er is een piek te zien bij het gemiddelde van 2.3 uur.")
+    # Add histogram data
+    x1 = paalData['ChargeTime']
 
-    
+    # Group data together
+    hist_data = [x1]
+
+    group_labels = ["2018 laadtijd kansdichtheidsfunctie"]
+
+    # Create distplot with custom bin_size
+    fig = ff.create_distplot(hist_data, group_labels, bin_size=.2)
+    st.plotly_chart(fig)
 
 
 
