@@ -85,7 +85,7 @@ def main():
                         'text': 'Mediaan van laadtijd = ' + laadMedian + " uur"}
     fig.update_layout({'annotations': [annotationMean, annotationMedian]})
 
-    my_legend = {'x': 1, 'y': 0, 'bgcolor': 'rgb(237, 219, 180)', 'borderwidth': 5}
+    my_legend = {'x': 1, 'y': 0, 'bgcolor': 'rgb(0, 0, 0)', 'borderwidth': 5}
     fig.update_layout({'showlegend': True, 'legend': my_legend},
                       title="Verdeling van laadtijden in 2018",
                       xaxis_title_text='Laad tijd (uur)',
